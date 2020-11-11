@@ -61,7 +61,7 @@ public:
                 // parent is >= both children. nothing more to do.
                 break;
             }
-            calcReadsAndWrites(6,2);
+            calcReadsAndWrites(1,1);
         }
         items[i] = tmp;
         calcReadsAndWrites(1,1);
@@ -75,8 +75,7 @@ public:
         // build the heap (with max value at root)
         for (i = items.size() / 2 - 1; i >= 0; --i) {
             percolateDown(items, i, items.size(), child, tmp);
-            // 3 reads for items
-            calcReadsAndWrites(3,0);
+
         }
         //printVec(items);
         // keep deleting the max

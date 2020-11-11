@@ -27,96 +27,71 @@ private:
 
 public:
 
-    void quickSortUnstableRec(std::vector<Comparable> &vec, int startIndex, int endIndex) {
-        if (endIndex <= startIndex) {
-            // There is only one element left. Nothing to do.
-            return;
-        }
-        Comparable partition = vec[startIndex];
+    // Bubble Sort
+    void stableAlgorithm(std::vector <Comparable> vec) {
+        bool haveSwapped = true;
+        bool readIterator = true;
+        int numPasses = 0, i;
         Comparable temp;
-        int i;
-        int largerElementIndex = startIndex + 1;
-        for (i = startIndex; i <= endIndex; ++i) {
-            if (vec[i] < partition) {
-                // 1 read for vec
-                // 1 read for partition
+        while (haveSwapped) {
 
-                // Swap the element with the one at largerElementIndex to keep smaller elements grouped
-                temp = vec[i];
-                // 1 write for temp
-                // 1 read for vec
+            haveSwapped = false;
 
-                vec[i] = vec[largerElementIndex];
-                // 1 write vec
-                // 1 read for vec
+            for (i = 0; i + 1 < vec.size() - numPasses; ++i) {
 
-                vec[largerElementIndex] = temp;
-                // 1 write for vec
-                // 1 read for temp
+                if (vec[i] > vec[i + 1]) {
 
-                // Update largerElementIndex
-                ++largerElementIndex;
-                calcReadsAndWrites(5,3);
+                    // The two elements are out of order. Swap them.
+                    temp = vec[i];
+
+                    vec[i] = vec[i + 1];
+
+                    vec[i + 1] = temp;
+
+                    // Update haveSwapped
+                    haveSwapped = true;
+
+
+                }
+
+                calcReadsAndWrites(6,3);
+
             }
+            ++numPasses;
+            //printVec(vec);
 
         }
-        vec[startIndex] = vec[largerElementIndex - 1];
-        vec[largerElementIndex - 1] = partition;
-        // 2 writes for vec
-        // 1 read for vec
-        // 1 read for partition
-        calcReadsAndWrites(2,2);
-
-        //printVec(vec);
-
-        // Recursive call for less-than-partition side
-        quickSortUnstableRec(vec, startIndex, largerElementIndex - 2);
-        // Recursive call for greater-than-or-equal-to-partition side
-        quickSortUnstableRec(vec, largerElementIndex, endIndex);
     }
 
-    void quickSortUnstable(std::vector<Comparable> vec) {
-        quickSortUnstableRec(vec, 0, vec.size() - 1);
-    }
-
-    void quickSortStableRec(std::vector<MarsWeather> &vec) {
-        // Recursive base case
-        if (vec.size() < 2) {
-            // There is nothing to sort
-            return;
-        }
-        // Choose a partition element
-        Comparable partition = vec[0];
-        std::vector<MarsWeather> smaller, equal, larger;
-        // Loop through vec and populate smaller, equal, larger
-        int i;
-        for (i = 0; i < vec.size(); ++i) {
-            if (vec[i] < partition) {
-                smaller.push_back(vec[i]);
-            } else if (vec[i] > partition) {
-                larger.push_back(vec[i]);
-            } else {
-                equal.push_back(vec[i]);
+    // Selection Sort
+    void unstableAlgorithm(std::vector<Comparable> vec) {
+        int swapIndex, i, minIndex;
+        Comparable temp;
+        for (swapIndex = 0; swapIndex < vec.size(); ++swapIndex) {
+            // 1 read for vec
+            minIndex = swapIndex;
+            for (i = swapIndex + 1; i < vec.size(); ++i) {
+                // 1 read for vec
+                if (vec[i] < vec[minIndex]) {
+                    // 2 reads for vec
+                    calcReadsAndWrites(2,0);
+                    // We have found a new minimum
+                    minIndex = i;
+                }
+                calcReadsAndWrites(1, 0);
             }
+            temp = vec[minIndex];
+            // 1 write for temp
+            // 1 read for vec
+            vec[minIndex] = vec[swapIndex];
+            // 1 write for vec
+            // 1 read for vec
+            vec[swapIndex] = temp;
+            // 1 write for vec
+            // 1 read for temp
+            //printVec(vec);
+            calcReadsAndWrites(4,3);
         }
-        // Recursive calls
-        quickSortStableRec(smaller);
-        quickSortStableRec(larger);
-        // Copy everything back into vec
-        for (i = 0; i < smaller.size(); ++i) {
-            vec[i] = smaller[i];
-        }
-        for (; i < smaller.size() + equal.size(); ++i) {
-            vec[i] = equal[i - smaller.size()];
-        }
-        for (; i < vec.size(); ++i) {
-            vec[i] = larger[i - smaller.size() - equal.size()];
-        }
-        printVec(vec);
-    }
-
-    void quickSortStable(std::vector<MarsWeather> vec) {
-        quickSortStableRec(vec);
     }
 
     void calcReadsAndWrites (int reads, int writes) {

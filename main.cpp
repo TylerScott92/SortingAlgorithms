@@ -57,7 +57,7 @@ int main() {
     sorting_algorithms.heapSort();
     sorting_algorithms.bubbleSort();
     sorting_algorithms.selectionSort();
-    //mergeSort();
+    sorting_algorithms.mergeSort();
     //twoSort();
     //radixSort(numbers, 2);
     return 0;

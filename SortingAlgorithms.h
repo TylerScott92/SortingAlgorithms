@@ -400,92 +400,218 @@ public:
         unsigned random_num = std::chrono::system_clock::now().time_since_epoch().count();
         shuffle(weather.begin(), weather.end(), std::default_random_engine(random_num));
 
-        MergeSort<MarsWeather> ss_one_hundred;
-        MergeSort<MarsWeather> ss_two_hundred;
-        MergeSort<MarsWeather> ss_three_hundred;
-        MergeSort<MarsWeather> ss_four_hundred;
-        MergeSort<MarsWeather> ss_five_hundred;
-        MergeSort<MarsWeather> ss_six_hundred;
-        MergeSort<MarsWeather> ss_seven_hundred;
-        MergeSort<MarsWeather> ss_eight_hundred;
-        MergeSort<MarsWeather> ss_nine_hundred;
-        MergeSort<MarsWeather> ss_one_thousand;
+        MergeSort<MarsWeather> one_hundred;
+        MergeSort<MarsWeather> two_hundred;
+        MergeSort<MarsWeather> three_hundred;
+        MergeSort<MarsWeather> four_hundred;
+        MergeSort<MarsWeather> five_hundred;
+        MergeSort<MarsWeather> six_hundred;
+        MergeSort<MarsWeather> seven_hundred;
+        MergeSort<MarsWeather> eight_hundred;
+        MergeSort<MarsWeather> nine_hundred;
+        MergeSort<MarsWeather> one_thousand;
 
         for (int i = 0; i < 101; ++i) {
             weather_one_hundred.push_back(weather[i]);
         }
 
-        ss_one_hundred.mergeSort(weather_one_hundred);
+        one_hundred.mergeSort(weather_one_hundred);
 
         for (int i = 0; i < 201; ++i) {
             weather_two_hundred.push_back(weather[i]);
         }
 
-        ss_two_hundred.selectionSort(weather_two_hundred);
+        two_hundred.mergeSort(weather_two_hundred);
 
         for (int i = 0; i < 301; ++i) {
             weather_three_hundred.push_back(weather[i]);
         }
 
-        ss_three_hundred.selectionSort(weather_three_hundred);
+        three_hundred.mergeSort(weather_three_hundred);
 
         for (int i = 0; i < 401; ++i) {
             weather_four_hundred.push_back(weather[i]);
         }
 
-        ss_four_hundred.selectionSort(weather_four_hundred);
+        four_hundred.mergeSort(weather_four_hundred);
 
         for (int i = 0; i < 501; ++i) {
             weather_five_hundred.push_back(weather[i]);
         }
 
-        ss_five_hundred.selectionSort(weather_five_hundred);
+        five_hundred.mergeSort(weather_five_hundred);
 
         for (int i = 0; i < 601; ++i) {
             weather_six_hundred.push_back(weather[i]);
         }
 
-        ss_six_hundred.selectionSort(weather_six_hundred);
+        six_hundred.mergeSort(weather_six_hundred);
 
         for (int i = 0; i < 701; ++i) {
             weather_seven_hundred.push_back(weather[i]);
         }
 
-        ss_seven_hundred.selectionSort(weather_seven_hundred);
+        seven_hundred.mergeSort(weather_seven_hundred);
 
         for (int i = 0; i < 801; ++i) {
             weather_eight_hundred.push_back(weather[i]);
         }
 
-        ss_eight_hundred.selectionSort(weather_eight_hundred);
+        eight_hundred.mergeSort(weather_eight_hundred);
 
         for (int i = 0; i < 901; ++i) {
             weather_nine_hundred.push_back(weather[i]);
         }
 
-        ss_nine_hundred.selectionSort(weather_nine_hundred);
+        nine_hundred.mergeSort(weather_nine_hundred);
 
         for (int i = 0; i < 1001; ++i) {
             weather_one_thousand.push_back(weather[i]);
         }
 
-        ss_one_thousand.selectionSort(weather_one_thousand);
+        one_thousand.mergeSort(weather_one_thousand);
 
         // Write to file
         std::ofstream file_sequence;
-        file_sequence.open("../selection_sort.csv");
+        file_sequence.open("../merge_sort.csv");
         if (file_sequence) {
 
-            file_sequence << ss_one_hundred.getReads() << ", " << ss_one_hundred.getWrites() << std::endl;
-            file_sequence << ss_two_hundred.getReads() <<  ", " << ss_two_hundred.getWrites() << std::endl;
-            file_sequence << ss_three_hundred.getReads() << ", " << ss_three_hundred.getWrites() << std::endl;
-            file_sequence << ss_four_hundred.getReads() << ", " << ss_four_hundred.getWrites() << std::endl;
-            file_sequence << ss_five_hundred.getReads() << ", " << ss_five_hundred.getWrites() << std::endl;
-            file_sequence << ss_six_hundred.getReads() << ", " << ss_six_hundred.getWrites() << std::endl;
-            file_sequence << ss_seven_hundred.getReads() << ", " << ss_seven_hundred.getWrites() << std::endl;
-            file_sequence << ss_eight_hundred.getReads() << ", " << ss_eight_hundred.getWrites() << std::endl;
-            file_sequence << ss_nine_hundred.getReads() << ", " << ss_nine_hundred.getWrites() << std::endl;
-            file_sequence << ss_one_thousand.getReads() << ", " << ss_one_thousand.getWrites() << std::endl;
+            file_sequence << one_hundred.getReads() << ", " << one_hundred.getWrites() << std::endl;
+            file_sequence << two_hundred.getReads() <<  ", " << two_hundred.getWrites() << std::endl;
+            file_sequence << three_hundred.getReads() << ", " << three_hundred.getWrites() << std::endl;
+            file_sequence << four_hundred.getReads() << ", " << four_hundred.getWrites() << std::endl;
+            file_sequence << five_hundred.getReads() << ", " << five_hundred.getWrites() << std::endl;
+            file_sequence << six_hundred.getReads() << ", " << six_hundred.getWrites() << std::endl;
+            file_sequence << seven_hundred.getReads() << ", " << seven_hundred.getWrites() << std::endl;
+            file_sequence << eight_hundred.getReads() << ", " << eight_hundred.getWrites() << std::endl;
+            file_sequence << nine_hundred.getReads() << ", " << nine_hundred.getWrites() << std::endl;
+            file_sequence << one_thousand.getReads() << ", " << one_thousand.getWrites() << std::endl;
+
+        }
+        file_sequence.close();
+
+    }
+
+    void twoSort() {
+        // Create vector object
+        std::vector<MarsWeather> weather;
+        std::vector<MarsWeather> weather_one_hundred;
+        std::vector<MarsWeather> weather_two_hundred;
+        std::vector<MarsWeather> weather_three_hundred;
+        std::vector<MarsWeather> weather_four_hundred;
+        std::vector<MarsWeather> weather_five_hundred;
+        std::vector<MarsWeather> weather_six_hundred;
+        std::vector<MarsWeather> weather_seven_hundred;
+        std::vector<MarsWeather> weather_eight_hundred;
+        std::vector<MarsWeather> weather_nine_hundred;
+        std::vector<MarsWeather> weather_one_thousand;
+
+        // Populate vector with content from file
+        getWeather("mars-weather.csv", weather);
+        unsigned random_num = std::chrono::system_clock::now().time_since_epoch().count();
+        shuffle(weather.begin(), weather.end(), std::default_random_engine(random_num));
+
+        TwoSort<MarsWeather> one_hundred;
+        TwoSort<MarsWeather> two_hundred;
+        TwoSort<MarsWeather> three_hundred;
+        TwoSort<MarsWeather> four_hundred;
+        TwoSort<MarsWeather> five_hundred;
+        TwoSort<MarsWeather> six_hundred;
+        TwoSort<MarsWeather> seven_hundred;
+        TwoSort<MarsWeather> eight_hundred;
+        TwoSort<MarsWeather> nine_hundred;
+        TwoSort<MarsWeather> one_thousand;
+
+        for (int i = 0; i < 101; ++i) {
+            weather_one_hundred.push_back(weather[i]);
+        }
+
+        one_hundred.unstableAlgorithm(weather_one_hundred);
+        one_hundred.stableAlgorithm(weather_one_hundred);
+
+        for (int i = 0; i < 201; ++i) {
+            weather_two_hundred.push_back(weather[i]);
+        }
+
+        two_hundred.unstableAlgorithm(weather_two_hundred);
+        two_hundred.stableAlgorithm(weather_two_hundred);
+
+        for (int i = 0; i < 301; ++i) {
+            weather_three_hundred.push_back(weather[i]);
+        }
+
+        three_hundred.unstableAlgorithm(weather_three_hundred);
+        three_hundred.stableAlgorithm(weather_three_hundred);
+
+
+        for (int i = 0; i < 401; ++i) {
+            weather_four_hundred.push_back(weather[i]);
+        }
+
+        four_hundred.unstableAlgorithm(weather_four_hundred);
+        four_hundred.stableAlgorithm(weather_four_hundred);
+
+        for (int i = 0; i < 501; ++i) {
+            weather_five_hundred.push_back(weather[i]);
+        }
+
+        five_hundred.unstableAlgorithm(weather_five_hundred);
+        five_hundred.stableAlgorithm(weather_five_hundred);
+
+        for (int i = 0; i < 601; ++i) {
+            weather_six_hundred.push_back(weather[i]);
+        }
+
+        six_hundred.unstableAlgorithm(weather_six_hundred);
+        six_hundred.stableAlgorithm(weather_six_hundred);
+
+        for (int i = 0; i < 701; ++i) {
+            weather_seven_hundred.push_back(weather[i]);
+        }
+
+        seven_hundred.unstableAlgorithm(weather_seven_hundred);
+        seven_hundred.stableAlgorithm(weather_seven_hundred);
+
+
+        for (int i = 0; i < 801; ++i) {
+            weather_eight_hundred.push_back(weather[i]);
+        }
+
+        eight_hundred.unstableAlgorithm(weather_eight_hundred);
+        eight_hundred.stableAlgorithm(weather_eight_hundred);
+
+
+        for (int i = 0; i < 901; ++i) {
+            weather_nine_hundred.push_back(weather[i]);
+        }
+
+        nine_hundred.unstableAlgorithm(weather_nine_hundred);
+        nine_hundred.stableAlgorithm(weather_nine_hundred);
+
+
+        for (int i = 0; i < 1001; ++i) {
+            weather_one_thousand.push_back(weather[i]);
+        }
+
+        one_thousand.unstableAlgorithm(weather_one_thousand);
+        one_thousand.stableAlgorithm(weather_one_thousand);
+
+
+        // Write to file
+        std::ofstream file_sequence;
+        file_sequence.open("../merge_sort.csv");
+        if (file_sequence) {
+
+            file_sequence << one_hundred.getReads() << ", " << one_hundred.getWrites() << std::endl;
+            file_sequence << two_hundred.getReads() <<  ", " << two_hundred.getWrites() << std::endl;
+            file_sequence << three_hundred.getReads() << ", " << three_hundred.getWrites() << std::endl;
+            file_sequence << four_hundred.getReads() << ", " << four_hundred.getWrites() << std::endl;
+            file_sequence << five_hundred.getReads() << ", " << five_hundred.getWrites() << std::endl;
+            file_sequence << six_hundred.getReads() << ", " << six_hundred.getWrites() << std::endl;
+            file_sequence << seven_hundred.getReads() << ", " << seven_hundred.getWrites() << std::endl;
+            file_sequence << eight_hundred.getReads() << ", " << eight_hundred.getWrites() << std::endl;
+            file_sequence << nine_hundred.getReads() << ", " << nine_hundred.getWrites() << std::endl;
+            file_sequence << one_thousand.getReads() << ", " << one_thousand.getWrites() << std::endl;
 
         }
         file_sequence.close();
