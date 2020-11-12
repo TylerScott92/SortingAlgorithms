@@ -28,25 +28,25 @@ private:
 public:
 
     // Bubble Sort
-    void stableAlgorithm(std::vector <Comparable> vec) {
+    void stableAlgorithm(std::vector <MarsWeather> vec) {
         bool haveSwapped = true;
         bool readIterator = true;
         int numPasses = 0, i;
-        Comparable temp;
+        int temp;
         while (haveSwapped) {
 
             haveSwapped = false;
 
             for (i = 0; i + 1 < vec.size() - numPasses; ++i) {
 
-                if (vec[i] > vec[i + 1]) {
+                if (vec[i].getMaxTemp() > vec[i + 1].getMaxTemp()) {
 
                     // The two elements are out of order. Swap them.
-                    temp = vec[i];
+                    temp = vec[i].getMaxTemp();
 
                     vec[i] = vec[i + 1];
 
-                    vec[i + 1] = temp;
+                    vec[i + 1].setMaxTemp(temp);
 
                     // Update haveSwapped
                     haveSwapped = true;
@@ -58,7 +58,6 @@ public:
 
             }
             ++numPasses;
-            //printVec(vec);
 
         }
     }

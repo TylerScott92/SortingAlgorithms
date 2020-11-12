@@ -599,7 +599,7 @@ public:
 
         // Write to file
         std::ofstream file_sequence;
-        file_sequence.open("../merge_sort.csv");
+        file_sequence.open("../two_sort.csv");
         if (file_sequence) {
 
             file_sequence << one_hundred.getReads() << ", " << one_hundred.getWrites() << std::endl;

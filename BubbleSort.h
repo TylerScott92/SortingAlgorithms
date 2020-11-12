@@ -36,15 +36,23 @@ public:
             haveSwapped = false;
 
             for (i = 0; i + 1 < vec.size() - numPasses; ++i) {
+                // 1 read for vec
 
                 if (vec[i] > vec[i + 1]) {
+                    // 2 reads for vec
 
                     // The two elements are out of order. Swap them.
                     temp = vec[i];
+                    // 1 write for temp
+                    // 1 read for vec
 
                     vec[i] = vec[i + 1];
+                    // 1 write for vec
+                    // 1 read for vec
 
                     vec[i + 1] = temp;
+                    // 1 write for vec
+                    // 1 read for temp
 
                     // Update haveSwapped
                     haveSwapped = true;
